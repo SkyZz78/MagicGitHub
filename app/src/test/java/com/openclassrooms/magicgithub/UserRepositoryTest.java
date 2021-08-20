@@ -1,20 +1,25 @@
 package com.openclassrooms.magicgithub;
 
-import com.openclassrooms.magicgithub.api.FakeApiServiceGenerator;
 import com.openclassrooms.magicgithub.di.Injection;
 import com.openclassrooms.magicgithub.model.User;
 import com.openclassrooms.magicgithub.repository.UserRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.openclassrooms.magicgithub.api.FakeApiServiceGenerator.FAKE_USERS;
 import static com.openclassrooms.magicgithub.api.FakeApiServiceGenerator.FAKE_USERS_RANDOM;
-import static org.junit.Assert.*;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -35,7 +40,7 @@ public class UserRepositoryTest {
     public void getUsersWithSuccess() {
         List<User> usersActual = userRepository.getUsers();
         List<User> usersExpected = FAKE_USERS;
-        assertThat(usersActual, containsInAnyOrder(usersExpected.toArray()));
+        assertThat(usersActual, containsInAnyOrder(Objects.requireNonNull(usersExpected.toArray())));
     }
 
     @Test
